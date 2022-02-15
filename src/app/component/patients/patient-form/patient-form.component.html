@@ -1,0 +1,66 @@
+<h2 mat-dialog-title *ngIf="!patient">Add Patient</h2>
+<h2 *ngIf="patient">Edit Patient</h2>
+
+<form mat-dialog-content [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- FirstName field -->
+  <mat-form-field appearance="fill">
+    <mat-label>FirstName</mat-label>
+    <input matInput type="text" formControlName="firstName"/>
+  </mat-form-field>
+  <mat-error *ngIf="firstName && firstName.invalid && (firstName.dirty || firstName.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="firstName.errors?.['required']">
+      Firstname is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <!-- LastName field -->
+  <mat-form-field appearance="fill">
+    <mat-label>LastName</mat-label>
+    <input matInput type="text" formControlName="lastName"/>
+  </mat-form-field>
+  <mat-error *ngIf="lastName && lastName.invalid && (lastName.dirty || lastName.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="lastName.errors?.['required']">
+      LastName is required.
+    </div>
+  </mat-error>
+  <br/>
+
+
+  <!-- Age field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Age</mat-label>
+    <input matInput type="number" formControlName="age"/>
+  </mat-form-field>
+  <mat-error *ngIf="age && age.invalid && (age.dirty || age.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="age.errors?.['required']">
+      Age is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <!-- Sex field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Sex</mat-label>
+    <input matInput type="text" formControlName="sex"/>
+  </mat-form-field>
+  <mat-error *ngIf="sex && sex.invalid && (sex.dirty || sex.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="sex.errors?.['required']">
+      Sex is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+</form>

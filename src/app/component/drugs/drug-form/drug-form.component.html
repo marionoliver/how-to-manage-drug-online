@@ -1,0 +1,37 @@
+<h2 mat-dialog-title *ngIf="!drug">Add Drug</h2>
+<h2 *ngIf="drug">Edit Drug</h2>
+
+<form mat-dialog-content [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- Code field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Code</mat-label>
+    <input matInput type="text" formControlName="code"/>
+  </mat-form-field>
+  <mat-error *ngIf="code && code.invalid && (code.dirty || code.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="code.errors?.['required']">
+      Code is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <!-- Name column -->
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" formControlName="name"/>
+  </mat-form-field>
+  <mat-error *ngIf="name && name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="name.errors?.['required']">
+      Name is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,48 @@
+<h2 mat-dialog-title *ngIf="!doctor">Add Doctor</h2>
+<h2 *ngIf="doctor">Edit Doctor</h2>
+
+<form mat-dialog-content [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- FirstName field -->
+  <mat-form-field appearance="fill">
+    <mat-label>FirstName</mat-label>
+    <input matInput type="text" formControlName="firstName"/>
+  </mat-form-field>
+  <mat-error *ngIf="firstName && firstName.invalid && (firstName.dirty || firstName.touched)"
+             class="alert alert-danger">
+    <div *ngIf="firstName.errors?.['required']">
+      FirstName is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <!-- LastName field -->
+  <mat-form-field appearance="fill">
+    <mat-label>LastName</mat-label>
+    <input matInput type="text" formControlName="lastName"/>
+  </mat-form-field>
+  <mat-error *ngIf="lastName && lastName.invalid && (lastName.dirty || lastName.touched)"
+             class="alert alert-danger">
+    <div *ngIf="lastName.errors?.['required']">
+      LastName is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <!-- Speciality field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Speciality</mat-label>
+    <input matInput type="text" formControlName="speciality"/>
+  </mat-form-field>
+  <mat-error *ngIf="speciality && speciality.invalid && (speciality.dirty || speciality.touched)"
+             class="alert alert-danger">
+    <div *ngIf="speciality.errors?.['required']">
+      Speciality is required.
+    </div>
+  </mat-error>
+  <br/>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,101 @@
+<div class="c-patient-details" *ngIf="patient">
+  <h2>Patient Details</h2>
+  <div class="c-patient-details__firstname">
+    {{patient.firstName}}
+  </div>
+  <div class="c-patient-details__lastname">
+    {{patient.lastName}}
+  </div>
+  <div class="c-patient-details__age">
+    {{patient.age}}
+  </div>
+  <div class="c-patient-details__sex">
+    {{patient.sex}}
+  </div>
+
+
+  <!-- Treatments-->
+  <div class="c-patient-details__treatments">
+    <h3>Treatments</h3>
+    <button mat-raised-button (click)="openTreatmentDialog()">
+      <mat-icon aria-hidden="false">health_and_safety</mat-icon>
+      Add treatment
+    </button>
+    <br/>
+    <table *ngIf="patient.treatments && patient.treatments.length > 0; else noTreatment" mat-table
+           [dataSource]="treatments" class="mat-elevation-z8">
+
+      <!-- Start treatment column -->
+      <ng-container matColumnDef="start">
+        <th mat-header-cell *matHeaderCellDef> Start</th>
+        <td mat-cell *matCellDef="let element"> {{element.start|date:'dd/MM/YYYY'}} </td>
+      </ng-container>
+
+      <!-- End treatment column -->
+      <ng-container matColumnDef="end">
+        <th mat-header-cell *matHeaderCellDef> End</th>
+        <td mat-cell *matCellDef="let element"> {{element.end|date:'dd/MM/YYYY'}} </td>
+      </ng-container>
+
+      <!-- Text treatment column -->
+      <ng-container matColumnDef="text">
+        <th mat-header-cell *matHeaderCellDef> Text</th>
+        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+      </ng-container>
+
+      <!-- Action treatment column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element">
+
+          <button mat-raised-button color="primary" (click)="openTreatmentDialog(element)">
+            <mat-icon aria-hidden="false">edit</mat-icon>
+            Edit treatment
+          </button>
+          <button mat-raised-button color="warn" (click)="openDeleteTreatmentDialog(element)">
+            <mat-icon aria-hidden="false">delete</mat-icon>
+            Delete treatment
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsTreatment"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsTreatment;"></tr>
+    </table>
+
+
+    <ng-template #noTreatment>
+      NoTreatment
+    </ng-template>
+
+  </div>
+  <!-- Drugs -->
+  <div class="c-patient-details__drugs">
+    <h3>Drugs</h3>
+    <button mat-raised-button (click)="openDrugDialog(drugs)">
+      <mat-icon aria-hidden="false">health_and_safety</mat-icon>
+      Manage patient's drugs
+    </button>
+    <table *ngIf="patient.drugs && patient.drugs.length > 0; else noDrug" mat-table [dataSource]="drugsDataSource"
+           class="mat-elevation-z8">
+
+      <!-- Code drug column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code</th>
+        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+      </ng-container>
+
+      <!-- Code drug column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsDrug"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsDrug;"></tr>
+    </table>
+    <ng-template #noDrug>
+      No drug
+    </ng-template>
+  </div>
+</div>

@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.mat-dialog-content {
+  padding: 30px !important;
+  .mat-form-field {
+    width: 100%;
+  }
+}
+.mat-table {
+  width: 100%;
+}
+
+.mat-raised-button {
+  margin: 5px !important;
+}
+
+.mat-icon {
+  margin-right: 5px;
+}

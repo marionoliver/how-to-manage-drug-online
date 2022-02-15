@@ -1,0 +1,10 @@
+<ul *ngIf="doctor && patients">
+  <li *ngFor="let patient of patients">
+    {{patient.firstName}} {{ patient.lastName}}
+    <ul>
+      <li *ngFor="let treatment of patient.treatments">
+        From {{treatment.start|date:'dd/MM/YYYY'}} to {{treatment.end|date:'dd/MM/YYYY'}} : {{ treatment.text}}
+      </li>
+    </ul>
+  </li>
+</ul>

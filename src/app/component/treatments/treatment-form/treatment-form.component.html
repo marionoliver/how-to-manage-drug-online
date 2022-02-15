@@ -1,0 +1,67 @@
+<h2 mat-dialog-title *ngIf="!treatment">Add Treatment</h2>
+<h2 *ngIf="treatment">Edit Treatment</h2>
+
+<form mat-dialog-content [formGroup]="form" (ngSubmit)="submit()">
+
+  <!-- Range picker for start and end date -->
+  <mat-form-field appearance="fill">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Start date">
+      <input matEndDate formControlName="end" placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <mat-error *ngIf="start && start.invalid && (start.dirty || start.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="start.errors?.['required']">
+      Start date is required.
+    </div>
+  </mat-error>
+  <mat-error *ngIf="end && end.invalid && (end.dirty || end.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="end.errors?.['required']">
+      End date is required.
+    </div>
+  </mat-error>
+
+
+  <!-- Text field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Text</mat-label>
+    <input matInput type="text" formControlName="text"/>
+  </mat-form-field>
+  <mat-error *ngIf="text && text.invalid && (text.dirty || text.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="text.errors?.['required']">
+      Text is required.
+    </div>
+  </mat-error>
+  <br/>
+
+
+  <!-- Doctor field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Doctor</mat-label>
+    <mat-select formControlName="doctor">
+      <mat-option *ngFor="let doctor of doctors" [value]="doctor._id">
+        {{doctor.firstName}} {{doctor.lastName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-error *ngIf="doctor && doctor.invalid && (doctor.dirty || doctor.touched)"
+             class="alert alert-danger">
+
+    <div *ngIf="doctor.errors?.['required']">
+      Doctor is required.
+    </div>
+  </mat-error>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+</form>

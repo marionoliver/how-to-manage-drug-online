@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Drugs</h2>
+
+<form mat-dialog-content [formGroup]="form" (ngSubmit)="submit()">
+  <!-- Drugs field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Drugs</mat-label>
+    <mat-select formControlName="drugs" multiple>
+      <mat-option *ngFor="let drug of drugsOption" [value]="drug._id">{{drug.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+</form>
