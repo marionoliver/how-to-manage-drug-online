@@ -9,6 +9,7 @@ import {ConfirmDialogComponent} from "../../confirm-dialog/confirm-dialog.compon
 import {Drug} from "../../../model/drug.model";
 import {DrugService} from "../../../service/drug.service";
 import {DrugFormComponent} from "../drug-form/drug-form.component";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-drug-list',
@@ -21,12 +22,14 @@ export class DrugListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private drugService: DrugService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
     // Get all drugs
     this.getDrugs();
+    this.titleService.setTitle('Drug\'s list');
   }
 
   getDrugs(): void {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { PatientDetailComponent } from './component/patients/patient-detail/patient-detail.component';
 import { PatientListComponent } from './component/patients/patient-list/patient-list.component';
@@ -80,7 +80,7 @@ registerLocaleData(localeFr, 'fr');
     MatListModule
   ],
   providers: [
-
+    Title,
     {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
   ],
   bootstrap: [AppComponent]

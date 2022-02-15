@@ -2,7 +2,6 @@ const { faker } = require('@faker-js/faker');
 var Patient = require('./backend/model/patient.model.js');
 
 var Drug = require('./backend/model/drug.model.js');
-var Treatment = require('./backend/model/treatment.model');
 var Doctor = require('./backend/model/doctor.model.js');
 var cors = require('cors');
 

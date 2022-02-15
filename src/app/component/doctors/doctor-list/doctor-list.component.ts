@@ -7,6 +7,7 @@ import {DoctorFormComponent} from "../doctor-form/doctor-form.component";
 import {MatTableDataSource} from "@angular/material/table";
 import {Patient} from "../../../model/patient.model";
 import {MatPaginator} from "@angular/material/paginator";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-doctor-list',
@@ -19,12 +20,14 @@ export class DoctorListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private doctorService: DoctorService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
     // Get all doctors
     this.getDoctors();
+    this.titleService.setTitle('Doctor\'s list');
   }
 
   getDoctors(): void {

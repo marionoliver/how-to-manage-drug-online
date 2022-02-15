@@ -8,6 +8,7 @@ import {Drug} from "../../../model/drug.model";
 import {ConfirmDialogComponent} from "../../confirm-dialog/confirm-dialog.component";
 import {MatTableDataSource} from "@angular/material/table";
 import {PatientDrugFormComponent} from "../../drugs/patient-drug-form/patient-drug-form.component";
+import {Title} from "@angular/platform-browser";
 
 
 @Component({
@@ -26,7 +27,8 @@ export class PatientDetailComponent implements OnInit {
 
 
   constructor(private patientService: PatientService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class PatientDetailComponent implements OnInit {
       }
       this.patient = history.state;
       this.treatments.data = this.patient.treatments;
+      this.titleService.setTitle('Patient : ' + this.patient.firstName + " " + this.patient.lastName);
     }
   }
 

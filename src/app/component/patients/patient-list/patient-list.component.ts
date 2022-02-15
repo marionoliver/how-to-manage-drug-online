@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {PatientFormComponent} from "../patient-form/patient-form.component";
 import {ConfirmDialogComponent} from "../../confirm-dialog/confirm-dialog.component";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-patient-list',
@@ -21,12 +22,14 @@ export class PatientListComponent implements OnInit {
 
   constructor(private patientService: PatientService,
               public dialog: MatDialog,
-              private router: Router) {
+              private router: Router,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
     // Get all patients
     this.getPatients();
+    this.titleService.setTitle('Patient\'s list');
   }
 
 
